@@ -1,0 +1,46 @@
+/* Header.css */
+.header {
+    width: 100%;
+    background-color: #FFFFFF; /* Dark green color */
+    color: white;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+  .header-logo {
+    height: auto; /* Maintains the aspect ratio */
+    width: 250px; /* Increase the width to make the banner larger */
+    margin-right: 20px; /* Space between the logo and the title */
+  }
+  
+  /* Ensure your title is appropriately styled */
+  .header-title {
+    font-size: 1.5em; /* Example size, adjust as needed */
+    color: #006FCC; /* Or any other color */
+    /* Add other styles for the title as needed */
+  }
+  
+  .sign-out-link {
+    display: flex;
+    align-items: center;
+    background-color: #2586c6; /* A nice blue background */
+    color: #FFFFFF; /* white text color */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* smooth transition for hover effect */
+  }
+  
+  .sign-out-link:hover {
+    background-color: #2980B9; /* A slightly darker blue on hover */
+  }
+  
+  .sign-out-link i.fa {
+    margin-right: 5px;
+  }

@@ -1,0 +1,11 @@
+/* Footer.css */
+.footer {
+    width: 100%;
+    background-color: #004d40; /* Match the header color */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+  }
+  
