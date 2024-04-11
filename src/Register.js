@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Register.css'; // Make sure you have created this CSS file
 
 function Register() {
@@ -7,42 +8,27 @@ function Register() {
   const [lname, setlName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [Role, setRole] = useState('');
+  const [passwordError, setPassErr] = useState('');
+  const navigate = useNavigate();
   
-  const navigate = useNavigate(); 
 
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstName: fname,
-          lastName: lname,
-          email: email, // Assuming email is used as the username
-          password,
-          role: Role,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log('Account Created Successfully', data.message);
-      // Redirect to dashboard
-      navigate('/Dashboard'); // Add this line to redirect to the dashboard
-    } catch (error) {
-      console.error('Error during registration', error);
-      // Display an error message to the user
+    if(validatePassword(password)) {
+    // Here, you would handle the signup logic, possibly sending a request to a backend server
+    console.log('Account Created Successfully', { fname, lname, email, password });
+    navigate('/Login');
+    }else {
+      setPassErr('Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character.');
     }
   };
-  
 
+  const validatePassword = (password) => {
+    const passwordRE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRE.test(password);
+  };
+
+  /* 
   function RadioButtons() {
     const [selectedOption, setSelectedOption] = useState('');
   
@@ -72,6 +58,7 @@ function Register() {
             value="TA"
             checked={selectedOption === 'TA'}
             onChange={handleOptionChange}
+            onClick={setRole}
 
             
           />
@@ -81,7 +68,7 @@ function Register() {
         <p>Selected Option: {selectedOption}</p>
       </div>
     );
-  }
+  */
   
   return (
     <div className="vh-100 d-flex justify-content-center align-items-center">
@@ -135,13 +122,17 @@ function Register() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="role" className="form-label">Role</label>
-                <RadioButtons />
-            </div>
-            <div>
+                />
+                <form onSubmit={handleSubmit}>
+                                <ul className="password-requirements">
+                                  <li>Password must be at least 8 characters long</li>
+                                  <li>Contain at least one uppercase letter</li>
+                                  <li>One lowercase letter</li>
+                                  <li>One number</li>
+                                  <li>One special character</li>
+                                </ul>
+                </form>
+                {passwordError && <div className="password-error">{passwordError}</div>}
             </div>
             <button type="submit" className="btn btn-primary w-100">Sign up</button>
             <div className="mt-3 text-center">
