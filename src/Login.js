@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'; // Make sure you have created this CSS file
+import './Global.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Create a navigate function
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-        const response = await fetch('/api/login', {
+        const response = await fetch('http://localhost:5000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -18,7 +21,9 @@ function Login() {
         });
         const data = await response.json();
         if (response.ok) {
-            console.log('Login successful', data);
+            console.log('Login successful', data.message);
+            navigate('/Dashboard'); // Navigate to the dashboard
+
             // Redirect to dashboard or another page
         } else {
             console.log('Login failed', data.message);
