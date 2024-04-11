@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Register.css'; // Make sure you have created this CSS file
 
 function Register() {
@@ -7,15 +8,27 @@ function Register() {
   const [lname, setlName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [Role, setRole] = useState('');
+  const [passwordError, setPassErr] = useState('');
+  const navigate = useNavigate();
   
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Here, you would handle the login logic, possibly sending a request to a backend server
-    console.log('Account Created Successfully', { fname, lname, email, password, Role });
+    if(validatePassword(password)) {
+    // Here, you would handle the signup logic, possibly sending a request to a backend server
+    console.log('Account Created Successfully', { fname, lname, email, password });
+    navigate('Login');
+    }else {
+      setPassErr('Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character.');
+    }
   };
 
+  const validatePassword = (password) => {
+    const passwordRE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRE.test(password);
+  };
+
+  /* 
   function RadioButtons() {
     const [selectedOption, setSelectedOption] = useState('');
   
@@ -55,7 +68,7 @@ function Register() {
         <p>Selected Option: {selectedOption}</p>
       </div>
     );
-  }
+  */
   
   return (
     <div className="vh-100 d-flex justify-content-center align-items-center">
@@ -109,14 +122,17 @@ function Register() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="role" className="form-label">Role</label>
-                <RadioButtons />
-                {(e) => setRole(e.target.value)}
-            </div>
-            <div>
+                />
+                <form onSubmit={handleSubmit}>
+                                <ul className="password-requirements">
+                                  <li>Password must be at least 8 characters long</li>
+                                  <li>Contain at least one uppercase letter</li>
+                                  <li>One lowercase letter</li>
+                                  <li>One number</li>
+                                  <li>One special character</li>
+                                </ul>
+                </form>
+                {passwordError && <div className="password-error">{passwordError}</div>}
             </div>
             <button type="submit" className="btn btn-primary w-100">Sign up</button>
             <div className="mt-3 text-center">
