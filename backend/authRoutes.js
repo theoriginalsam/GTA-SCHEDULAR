@@ -1,23 +1,43 @@
 // routes/authRoutes.js
 const express = require('express');
-const User = require('../models/User');
+const User = require('./User');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 
 const router = express.Router();
 
 // Sign-in endpoint
-router.post('/signin', async (req, res) => {
-    const { username, password } = req.body;
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
     try {
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         if (user && await bcrypt.compare(password, user.password)) {
-            res.json({ message: 'Login successful', user: { username: user.username, role: user.role } });
+            res.json({ message: 'Login successful', user: { email: user.email, role: user.role } });
         } else {
             res.status(401).json({ message: 'Invalid credentials' });
         }
     } catch (error) {
+        console.error('Error during sign in:', error);
         res.status(500).json({ message: 'Error during sign in' });
+    }
+});
+
+// Add your registration route
+router.post('/register', async (req, res) => {
+    const { firstName, lastName, email, password, role } = req.body;
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({
+            firstName,
+            lastName,
+            email,
+            password: hashedPassword,
+            role
+        });
+        await newUser.save();
+        res.status(201).json({ message: 'User registered successfully', user: { firstName: newUser.firstName, lastName: newUser.lastName, email: newUser.email, role: newUser.role } });
+    } catch (error) {
+        res.status(500).json({ message: 'Error during registration' });
     }
 });
 
@@ -65,6 +85,7 @@ router.post('/reset-password', async (req, res) => {
 
         res.json({ message: 'Password has been reset successfully' });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: 'Error during password reset' });
     }
 });
