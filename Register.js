@@ -17,7 +17,7 @@ function Register() {
     if(validatePassword(password)) {
     // Here, you would handle the signup logic, possibly sending a request to a backend server
     console.log('Account Created Successfully', { fname, lname, email, password });
-    navigate('Login');
+    navigate('/Login');
     }else {
       setPassErr('Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character.');
     }
