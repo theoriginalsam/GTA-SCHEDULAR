@@ -1,0 +1,10 @@
+/* CoursesList.css */
+.courses-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Or a fixed width, depending on your layout */
+    max-width: 600px; /* Or adjust to fit your design */
+    margin: auto; /* Center the list if using a max-width */
+    padding: 20px;
+  }
+  

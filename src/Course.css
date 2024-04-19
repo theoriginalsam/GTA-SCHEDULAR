@@ -1,0 +1,33 @@
+/* Course.css */
+.course-card {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  margin-bottom: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column; /* Stack the content vertically */
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between; /* Space between the course title and term */
+  align-items: baseline; /* Align text baselines */
+  margin-bottom: 0.5em;
+}
+
+.course-title,
+.course-term { /* Apply bold styling to both the course title and term */
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.course-term {
+  margin-left: 1em; /* Keeps a margin between the title and the term */
+  white-space: nowrap; /* Prevents the term from wrapping to a new line */
+}
+
+.course-body p {
+  margin: 0.25em 0;
+  font-size: 0.9em;
+}
