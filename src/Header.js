@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './Header.css';
-import mtsuLogo from './mtsu.banner.jpeg'; // Adjust the path as necessary
+import mtsuBanner from './mtsu.banner.jpeg'; // Adjust the path as necessary
 import { Link, useNavigate } from 'react-router-dom';
 
 function Header({ isLoggedIn, setIsLoggedIn }) {
@@ -27,7 +27,7 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
   return (
     <header className="header">
       <div className="header-logo-container">
-        <img src={mtsuLogo} alt="Middle Tennessee State University" className="header-logo" />
+        <img src={mtsuBanner} alt="Middle Tennessee State University" className="header-logo" />
         <Link to="/dashboard" className="header-title">
           MTSU TA Matching System
         </Link>

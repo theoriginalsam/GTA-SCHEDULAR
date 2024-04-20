@@ -11,6 +11,15 @@
     
   }
 
+  
+
+.mtsu-banner {
+  /* Adjust the size and margins as necessary */
+  height: 50px;
+  margin-right: 100px;
+  margin-top: 10px;
+}
+
   .header-logo {
     height: auto; /* Maintains the aspect ratio */
     width: 250px; /* Increase the width to make the banner larger */
@@ -21,9 +30,55 @@
   .header-title {
     font-size: 1.5em; /* Example size, adjust as needed */
     color: #006FCC; /* Or any other color */
+    text-decoration: underline;
     /* Add other styles for the title as needed */
   }
+  /* If you have navigation buttons or links, you can keep them on the right */
+.header-right {
+  margin-left: auto; /* Pushes the navigation to the right */
+  display: flex;
+  align-items: center;
+}
+
+  .navigation-link {
+    color: black; /* Sets text color to black */
+    text-decoration: none; /* Removes underline by default */
+    margin-right: 20px; /* Adds space between the navigation items */
+    font-weight: bold; /* Makes the font bold */
+    cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+    padding-top: 50px;
+  }
   
+  .navigation-link:hover {
+    text-decoration: underline; /* Adds underline on hover */
+  }
+  
+  .planner-title {
+    font-size: 24px;  /* Example size, adjust as needed */
+    color:#000000;  /* A blue color to match the buttons, adjust as needed */
+    text-align: center; /* Center the title */
+    margin: 20px 0; /* Adds space above and below the title */
+    text-decoration: underline; /* Adds underline to the title */
+  }
+
+  /* Styles for any buttons or links in the header */
+.my-planner-button,
+.sign-out-button {
+  padding: 5px 10px;
+  margin-left: 10px; /* Spacing between buttons */
+  background-color: transparent;
+  color: #000;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.my-planner-button:hover,
+.sign-out-button:hover {
+  text-decoration: underline;
+}
   .sign-out-link {
     display: flex;
     align-items: center;

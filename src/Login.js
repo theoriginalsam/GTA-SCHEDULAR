@@ -14,7 +14,7 @@ function Login() {
     console.log('Password:', password);
 
     try {
-        const response = await fetch('http://localhost:5000/login', {
+        const response = await fetch('http://localhost:5000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ function Login() {
                 Remember me
               </label>
             </div>
-            <Link to= "/Dashboard"><button type="submit" className="btn btn-primary w-100"> Sign in</button></Link>
+            <button type="submit" className="btn btn-primary w-100"> Sign in</button>
             <div className="mt-3 text-center">
               <Link to="/Forgot">Forgot Password?</Link>
             </div>

@@ -67,10 +67,12 @@ function Signup() {
                 type="text"
                 className="form-control"
                 id="fname"
+                name="fname"
                 placeholder="Enter First Name"
                 required
                 value={fname}
                 onChange={(e) => setfName(e.target.value)}
+                autocomplete="given-name"  // Standard autocomplete value for first names
               />
               </div>
             <div className="mb-3">
@@ -79,10 +81,12 @@ function Signup() {
                 type="text"
                 className="form-control"
                 id="lname"
+                name="lname"
                 placeholder="Enter Last Name"
                 required
                 value={lname}
                 onChange={(e) => setlName(e.target.value)}
+                autocomplete="family-name"  // Standard autocomplete value for last names
               />
               </div>
               <div className="mb-3">
@@ -91,10 +95,12 @@ function Signup() {
                 type="text"
                 className="form-control"
                 id="email"
+                name="email"
                 placeholder="Enter email"
                 required
                 value={email}
                 onChange={(e) => setemail(e.target.value)}
+                autocomplete="email"  // Standard autocomplete value for email addresses
               />
             </div>
             <div className="mb-3">
@@ -103,10 +109,12 @@ function Signup() {
                 type="password"
                 className="form-control"
                 id="password"
+                name="password"
                 placeholder="Enter Password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autocomplete="new-password"  // Suggests creating a new password, not autofilling
               />
             </div>
             <button type="submit" className="btn btn-primary w-100">Sign up</button>

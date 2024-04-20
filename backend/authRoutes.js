@@ -3,6 +3,7 @@ const express = require('express');
 const User = require('./User');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
@@ -61,16 +62,33 @@ router.post('/signup', async (req, res) => {
 
 // Sign-in endpoint
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
     try {
-        const user = await User.findOne({ username });
-        if (user && await bcrypt.compare(password, user.password)) {
-            res.json({ message: 'Login successful', user: { username: user.username, role: user.role } });
-        } else {
-            res.status(401).json({ message: 'Invalid credentials' });
+        const { email, password } = req.body;
+        console.log(email, password);
+        // Find the user by email
+        const user = await User.findOne({ email: email });
+        console.log(user);
+        if (!user) {
+            // If the user doesn't exist, send an error response
+            return res.status(401).json({ message: 'Invalid credentials' });
         }
+        // Check if the password matches
+        const passwordMatch = await bcrypt.compare(password, user.password);
+       console.log(passwordMatch);
+        if (!passwordMatch) {
+            // If the password doesn't match, send an error response
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        // If the email and password are correct, generate a JWT token
+        const token = jwt.sign({ userId: user._id }, 'your_secret_key', { expiresIn: '1h' });
+
+        // Send a success response along with the token
+        res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
-        res.status(500).json({ message: 'Error during sign in' });
+        console.error('Error during login:', error);
+        // If there's an error during the process, send an error response
+        res.status(500).json({ message: 'Error logging in' });
     }
 });
 

@@ -166,36 +166,35 @@ app.get('/matchedTA', async (req, res) => {
 });
 
 
-app.post('/login', async (req, res) => {
-    try {
-        const { email, password } = req.body;
+// app.post('/login', async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
+//         console.log(email, password);
+//         // Find the user by email
+//         const user = await User.findOne({ email: email });
+//         console.log(user);
+//         if (!user) {
+//             // If the user doesn't exist, send an error response
+//             return res.status(401).json({ message: 'Invalid credentials' });
+//         }
+//         // Check if the password matches
+//         const passwordMatch = await bcrypt.compare(password, user.password);
+//        console.log(passwordMatch);
+//         if (!passwordMatch) {
+//             // If the password doesn't match, send an error response
+//             return res.status(401).json({ message: 'Invalid credentials' });
+//         }
 
-        // Find the user by email
-        const user = await User.findOne({ email: email });
+//         // If the email and password are correct, generate a JWT token
+//         const token = jwt.sign({ userId: user._id }, 'your_secret_key', { expiresIn: '1h' });
 
-        if (!user) {
-            // If the user doesn't exist, send an error response
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
-
-        // Check if the password matches
-        const passwordMatch = await bcrypt.compare(password, user.password);
-       
-        if (!passwordMatch) {
-            // If the password doesn't match, send an error response
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
-
-        // If the email and password are correct, generate a JWT token
-        const token = jwt.sign({ userId: user._id }, 'your_secret_key', { expiresIn: '1h' });
-
-        // Send a success response along with the token
-        res.json({ message: 'Login successful', token });
-    } catch (error) {
-        // If there's an error during the process, send an error response
-        res.status(500).json({ message: 'Error logging in' });
-    }
-});
+//         // Send a success response along with the token
+//         res.json({ message: 'Login successful', token });
+//     } catch (error) {
+//         // If there's an error during the process, send an error response
+//         res.status(500).json({ message: 'Error logging in' });
+//     }
+// });
 
 
 app.post('/signup', async (req, res) => {

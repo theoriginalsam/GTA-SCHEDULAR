@@ -52,20 +52,6 @@ function Dashboard() {
 
   return (
     <>
-      <div
-        style={{
-          textAlign: "center",
-          backgroundColor: "#f0f0f0",
-          padding: "20px",
-          borderRadius: "10px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <h1 style={{ color: "#333", fontWeight: "bold", margin: "0" }}>
-          Welcome to the Dashboard
-        </h1>
-      </div>
-
       <div className="dashboard">
         <div className="section">
           <h2>Available TAs</h2>

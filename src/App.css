@@ -1,10 +1,19 @@
+/* App.css */
 .App {
   position: relative;
   height: 100vh;
   width: 100vw;
   overflow: hidden; /* Prevents scroll bars */
 }
-
+.app {
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+}
 .App::before {
   content: "";
   position: absolute;
@@ -28,9 +37,153 @@
   height: 400px; /* Or whatever size you prefer */
   z-index: 2; /* Ensure the logo is above the faded background */
 }
+.instructions {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.courses-container,
+.tas-container {
+  flex: 1;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #ddd;
+  margin-top: 100px; 
+}
+
+.course,
+.ta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.course input[type="checkbox"],
+.ta input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.course label,
+.ta label {
+  flex-grow: 1;
+}
+
+.button, 
+.blue-button, 
+.options-button, 
+.delete-button, 
+.add-course, 
+.add-ta {
+  background: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-times {
+  color: #007bff; /* This is a common blue color used in web design */
+}
 
 
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+  .courses-container,
+  .tas-container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+.generate-schedules,
+.print-button {
+  padding: 5px 20px;
+  background-color: #007bff; /* Blue for 'Generate Schedules' */
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s, box-shadow 0.2s;
+  margin-right: 10px; /* Reduced space between buttons */
+}
 
+.print-button {
+  background-color: #5cb85c; /* Different color for 'Print' button */
+  /* All other styles are inherited from .generate-schedules, 
+     except background-color */
+}
+
+
+.generate-schedules-container {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* Align the buttons vertically */
+  padding: 0; /* No padding to affect the size */
+  margin-right: -260px;
+}
+
+.schedules-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 20px;
+  width: 100%;
+  margin-left:230px;
+}
+
+.schedules-container h2 {
+  margin-bottom: 0px; /* Space between title and content */
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+.select-all {
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.gta-scheduler-title-container {
+  width: 100%;
+  text-align: center;
+  margin-top: -50px;
+}
+
+.print-button:hover,
+.print-button:focus {
+  background-color: #4cae4c;
+}
+
+.content, .schedules-container, .schedules-display-container {
+  box-sizing: border-box;
+}
 
 /* Styles for the login card and other elements inside .App */
 .login-card {

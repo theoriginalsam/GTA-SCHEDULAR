@@ -1,0 +1,18 @@
+/* MyPlanner.css */
+.my-planner {
+    display: flex;
+  }
+  
+  .course-list {
+    width: 30%; /* or whatever width you prefer for the courses column */
+    background-color: #f9f9f9; /* or any color you prefer */
+    /* add padding, margins, and other styles as needed */
+  }
+  
+  .schedule-viewer {
+    width: 70%; /* the rest of the space for the schedule viewer */
+    /* add padding, margins, and other styles as needed */
+  }
+  
+  /* Additional styling for your courses and schedule viewer */
+  
